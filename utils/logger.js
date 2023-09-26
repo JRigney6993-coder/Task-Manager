@@ -1,0 +1,1 @@
+// Easier way of logging messages within this goofy application.
