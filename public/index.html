@@ -10,60 +10,148 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="antialiased bg-body text-body font-body">
-    <div class="">
-                
-      <div class="container mx-auto">
-        <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
-          <div class="pt-5 border border-neutral-100 rounded-xl bg-black">
-            <div class="px-6">
-              <div class="flex flex-wrap items-center justify-between -m-2 mb-6">
-                <div class="w-auto p-2">
-                  <h3 class="font-heading text-lg font-semibold text-green-800">Task Manager</h3>
-                </div>
-                <div class="w-auto p-2"></div>
+  <div class="">
+              
+    <section class="py-4 overflow-hidden bg-black">
+      <div class="container px-4 mx-auto">
+        <h1 class="font-heading mb-1 text-2xl font-semibold text-green-800">Task Manager</h1>
+        <p class="text-sm text-neutral-500">Create and keep track of your tasks!</p>
+      </div>
+    </section>
+              
+    <div class="container mx-auto">
+      <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
+        <div class="pt-5 border border-neutral-100 rounded-xl bg-black">
+          <div class="px-6">
+            <div class="flex flex-wrap items-center justify-between -m-2 mb-6">
+              <div class="w-auto p-2">
+                <h3 class="font-heading text-lg font-semibold text-green-800" contenteditable="false">Add Task</h3>
               </div>
-              <div class="w-full overflow-x-auto">
-                <table class="w-full min-w-max"><thead><tr class="text-left"><th class="p-0 border-b border-neutral-100">
-                  <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Name/Description</a></div>
-                  </th>
-                  <th class="p-0 border-b border-neutral-100">
-                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Due Date</a></div>
-                  </th>
-                  <th class="p-0 border-b border-neutral-100">
-                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Utils</a></div>
-                  </th>
-                  <th class="p-0 border-b border-neutral-100">
-                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Finished</a></div>
-                  </th>
-                  <th class="p-0 border-b border-neutral-100">
-                    <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">ID</a></div>
-                  </th>
-                  </tr></thead><tbody><tr><td class="py-4 pr-4 border-b border-neutral-100">
-                  <div class="flex flex-wrap items-center -m-2">
-                    <div class="w-auto p-2">
-                      <span class="block font-semibold">Very cool task</span><span class="block text-sm text-neutral-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo…</span>
+            </div>
+            <div class="w-full">
+              <div class="flex flex-wrap -mx-4 -mb-4 md:mb-0">
+                <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0"><section class="py-4 overflow-hidden"><div class="p-6 border rounded-xl bg-black">
+                  <div class="flex flex-wrap justify-between -m-2">
+                    <div class="w-full sm:w-1/2 p-2">
+                      <h3 class="font-heading text-sm font-semibold">Task Name</h3>
+                      <p class="text-sm text-neutral-500">Enter the name of your task</p>
+                    </div>
+                    <div class="w-full sm:w-1/2 p-2">
+                      <div class="sm:max-w-md ml-auto overflow-hidden border border-neutral-200 rounded-lg focus-within:border-neutral-600">
+                        <div class="flex flex-wrap sm:flex-nowrap sm:divide-x divide-neutral-200">
+                          <div class="w-full sm:w-auto">
+    
+                          </div>
+                          <div class="w-full sm:flex-1">
+                            <input class="py-3 px-3.5 text-sm w-full h-full text-black outline-none hover:bg-gray-50 placeholder-neutral-400" id="task-name" type="text" placeholder="Task..." name=""></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  </td>
-                  <td class="py-4 pr-4 border-b border-neutral-100">
-                    <span class="block text-sm font-medium">12:00am</span><span class="block text-sm text-neutral-500">September 25,2023</span>
-                  </td>
-                  <td class="py-4 pr-4 border-b border-neutral-100">
-                    <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-blue-500 text-light hover:opacity-75" type="submit">Edit</button>
-                    <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-neutral-300 text-light hover:opacity-75" type="submit">View</button>
-      
-                    <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-red-400 text-light hover:opacity-75" type="submit">Remove</button>
-                  </td>
-                  <td class="py-4 pr-4 border-b border-neutral-100"><span class="text-sm font-medium">False</span></td>
-      
-                  <td class="py-4 pr-4 border-b border-neutral-100"><span class="text-sm font-medium">1</span></td>
-      
-                  </tr></tbody></table></div>
+                  </div>
+    
+                  </section><section class="py-4 overflow-hidden"><div class="p-6 border rounded-xl bg-black">
+                  <div class="flex flex-wrap justify-between -m-2">
+                    <div class="w-full sm:w-1/2 p-2">
+                      <h3 class="font-heading text-sm font-semibold">Due Date</h3>
+                      <p class="text-sm text-neutral-500" contenteditable="false">Enter your Tasks Due Date</p>
+                    </div>
+                    <div class="w-full sm:w-1/2 p-2">
+                      <div class="sm:max-w-md ml-auto overflow-hidden border border-neutral-200 rounded-lg focus-within:border-neutral-600">
+                        <div class="flex flex-wrap sm:flex-nowrap sm:divide-x divide-neutral-200">
+                          <div class="w-full sm:w-auto">
+    
+                          </div>
+                          <div class="w-full sm:flex-1">
+                            <input class="py-3 px-3.5 text-sm w-full h-full outline-none text-black hover:bg-gray-50 placeholder-neutral-400" id="task-name" type="text" placeholder="Task..." name=""></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+    
+                  </section></div>
+                <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0 py-4">
+                  <div class="p-6 border rounded-xl">
+                    <div class="flex flex-wrap justify-between -m-2">
+                      <div class="w-full sm:w-1/2 p-2">
+                        <h3 class="font-heading text-sm font-semibold">Description</h3>
+                      </div>
+                      <div class="w-full sm:w-1/2 p-2">
+                        <textarea class="block px-3.5 pb-3.5 pt-2.5 text-black text-sm w-full sm:max-w-md ml-auto placeholder-neutral-400 hover:bg-gray-50 outline-none border border-neutral-200 focus:border-neutral-600 rounded-lg" id="inputsTextarea5-1" rows="4" placeholder="Describe what your Task is about..." name=""></textarea></div>
+                    </div>
+                  </div>
+                  <button class="inline-flex flex-wrap items-center my-3 px-20 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-green-800 text-light hover:opacity-75" type="submit">Create</button>
+    
+                </div>
+    
+              </div>
+    
             </div>
           </div>
-          </div>
-        </section></div>
+        </div>
+        </div>
+      </section></div>
+              
+    <div class="container mx-auto">
+      <section class="py-4 overflow-hidden"><div class="container px-4 mx-auto">
+        <div class="pt-5 border border-neutral-100 rounded-xl bg-black">
+          <div class="px-6">
+            <div class="flex flex-wrap items-center justify-between -m-2 mb-6">
+              <div class="w-auto p-2">
+                <h3 class="font-heading text-lg font-semibold text-green-800">Tasks</h3>
+              </div>
+              <div class="w-auto p-2"></div>
+            </div>
+            <div class="w-full overflow-x-auto">
+              <table class="w-full min-w-max">
+    <thead><tr class="text-left">
+    <th class="p-0 border-b border-neutral-100">
+                <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Name/Description</a></div>
+                </th>
+                <th class="p-0 border-b border-neutral-100">
+                  <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Due Date</a></div>
+                </th>
+                <th class="p-0 border-b border-neutral-100">
+                  <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Utils</a></div>
+                </th>
+                <th class="p-0 border-b border-neutral-100">
+                  <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">Finished</a></div>
+                </th>
+                <th class="p-0 border-b border-neutral-100">
+                  <div class="pb-3.5"><a class="text-sm text-gray-400 font-medium" href="#">ID</a></div>
+                </th>
+                </tr></thead>
+    <tbody><tr>
+    <td class="py-4 pr-4 border-b border-neutral-100">
+                <div class="flex flex-wrap items-center -m-2">
+                  <div class="w-auto p-2">
+                    <span class="block font-semibold">Very cool task</span><span class="block text-sm text-neutral-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo…</span>
+                  </div>
+                </div>
+                </td>
+                <td class="py-4 pr-4 border-b border-neutral-100">
+                  <span class="block text-sm font-medium">September 25,2023</span>
+                </td>
+                <td class="py-4 pr-4 border-b border-neutral-100">
+                  <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-blue-500 text-light hover:opacity-75" type="submit">Edit</button>
+                  <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-neutral-300 text-light hover:opacity-75" type="submit">View</button>
+    
+                  <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-red-400 text-light hover:opacity-75" type="submit">Remove</button>
+                </td>
+                <td class="py-4 pr-4 border-b border-neutral-100"><span class="text-sm font-medium">False</span></td>
+    
+                <td class="py-4 pr-4 border-b border-neutral-100"><span class="text-sm font-medium">1</span></td>
+    
+                </tr></tbody>
+    </table>
     </div>
+          </div>
+        </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>
 
