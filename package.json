@@ -4,7 +4,6 @@
   "private": true,
   "license": "UNLICENSED",
   "author": "",
-  "description": "",
   "scripts": {
     "browsersync": "browser-sync start --directory --server ./public --files ./public/* --startPath index.html",
     "clean": "rimraf public/*",
@@ -19,6 +18,10 @@
     "watch-css": "tailwindcss build -i src/tailwind/tailwind.css -c src/tailwind/tailwind.config.js -o public/css/tailwind/tailwind.min.css --minify --watch"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3",
     "tailwindcss": "^3.0.7"
   },
   "devDependencies": {
@@ -29,5 +32,16 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^3.0.2"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JRigney6993-coder/Task-Manager.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JRigney6993-coder/Task-Manager/issues"
+  },
+  "homepage": "https://github.com/JRigney6993-coder/Task-Manager#readme",
+  "description": ""
 }
