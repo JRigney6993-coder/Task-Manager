@@ -26,4 +26,23 @@ $(document).ready(function() {
             }
         });
     });
+    
+
+    $(document).on('click', '.remove-btn', function() {
+        const taskId = $(this).data('id'); // Get the task ID from the data-id attribute of the button
+        console.log(taskId);
+    
+        $.ajax({
+            type: "DELETE",
+            url: `http://localhost:3000/delete_task/${taskId}`,
+            success: function(response) {
+                console.log(response.message);
+                loadTasks(); // Reload the tasks once a task is deleted
+            },
+            error: function(error) {
+                console.error('There was an error deleting the task:', error);
+            }
+        });
+    });
+    
 });

@@ -4,6 +4,15 @@ const express = require('express');
 const router = express.Router();
 const Task = require('./tasks');
 
+router.get('/get_tasks', async (req, res) => {
+    try {
+        const tasks = await Task.find(); // fetch all tasks from the database
+        res.status(200).json(tasks);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.post('/create_task', async (req, res) => {
     const { Task_Name, Task_Description, Due_Date } = req.body;
     console.log(req.body);
@@ -31,5 +40,21 @@ router.post('/create_task', async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 });
+
+router.delete('/delete_task/:taskId', async (req, res) => {
+    try {
+        const { taskId } = req.params;
+        const result = await Task.findByIdAndRemove(taskId);
+
+        if (!result) {
+            return res.status(404).json({ error: 'Task not found' });
+        }
+
+        res.status(202).json({ message: 'Task successfully deleted' });
+    } catch (err) {
+        res.status(450).json({ error: err.message });
+    }
+});
+
 
 module.exports = router;
