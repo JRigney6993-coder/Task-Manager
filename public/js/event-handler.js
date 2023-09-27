@@ -18,6 +18,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(response) {
                 console.log('Task added:', response);
+                loadTasks();
                 // Handle success: Show a message, reset the form, etc.
             },
             error: function(error) {
@@ -30,8 +31,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.remove-btn', function() {
         const taskId = $(this).data('id'); // Get the task ID from the data-id attribute of the button
-        console.log(taskId);
-    
+
         $.ajax({
             type: "DELETE",
             url: `http://localhost:3000/delete_task/${taskId}`,
@@ -45,4 +45,47 @@ $(document).ready(function() {
         });
     });
     
+    $('#btn-create-person').on('click', function() {
+        const personName = $('#person-name').val();
+        const personAge = parseInt($('#person-age').val());
+
+        const personData = {
+            Name: personName,
+            Age: personAge,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/create_person",  // Updated endpoint to create_person
+            data: JSON.stringify(personData),
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                console.log('Person added:', response);
+                loadPeople();
+                // You might want to create a function like 'loadPersons()' to update the list of persons
+            },
+            error: function(error) {
+                console.error('There was an error:', error);
+                // Handle errors: Show an error message, etc.
+            }
+        });
+    });
+
+    $(document).on('click', '.remove-person-btn', function() {
+        const personId = $(this).data('id'); // Get the person ID from the data-id attribute of the button
+
+        $.ajax({
+            type: "DELETE",
+            url: `http://localhost:3000/delete_person/${personId}`,
+            success: function(response) {
+                console.log(response.message);
+                loadPeople();
+                // You might want to create a function like 'loadPersons()' similar to your loadTasks function
+            },
+            error: function(error) {
+                console.error('There was an error deleting the person:', error);
+            }
+        });
+    });
 });

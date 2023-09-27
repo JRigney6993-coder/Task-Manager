@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('./tasks');
+const Person = require('./people');
 
 router.get('/get_tasks', async (req, res) => {
     try {
@@ -35,7 +36,7 @@ router.post('/create_task', async (req, res) => {
         });
 
         await task.save();
-        res.status(201).json(task);
+        res.status(200).json(task);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -50,9 +51,48 @@ router.delete('/delete_task/:taskId', async (req, res) => {
             return res.status(404).json({ error: 'Task not found' });
         }
 
-        res.status(202).json({ message: 'Task successfully deleted' });
+        res.status(200).json({ message: 'Task successfully deleted' });
     } catch (err) {
-        res.status(450).json({ error: err.message });
+        res.status(400).json({ error: err.message });
+    }
+});
+
+router.get('/get_people', async (req, res) => {
+    try {
+        const people = await Person.find(); // fetch all people from the database
+        res.status(200).json(people);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+router.post('/create_person', async (req, res) => {
+    const { Name, Age } = req.body;
+
+    try {
+        const person = new Person({
+            Name,
+            Age
+        });
+
+        await person.save();
+        res.status(200).json(person);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+router.delete('/delete_person/:id', async (req, res) => {
+    try {
+        const removedPerson = await Person.findByIdAndRemove(req.params.id);
+
+        if (!removedPerson) {
+            return res.status(404).json({ error: "Person not found" });
+        }
+
+        res.status(200).json({ message: 'Person deleted successfully' });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
 });
 
