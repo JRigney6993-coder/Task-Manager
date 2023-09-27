@@ -35,7 +35,7 @@ function loadTasks() {
                         </td>
                     </tr>`;
                 
-                tbody.append(taskRow); // append the new row to the table body
+                tbody.append(taskRow);
             });
         },
         error: function(error) {
@@ -74,7 +74,7 @@ function loadPeople() {
                         </td>
                     </tr>`;
                 
-                tbody.append(personRow); // append the new row to the table body
+                tbody.append(personRow);
             });
         },
         error: function(error) {

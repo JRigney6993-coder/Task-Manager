@@ -30,7 +30,7 @@ $(document).ready(function() {
     
 
     $(document).on('click', '.remove-btn', function() {
-        const taskId = $(this).data('id'); // Get the task ID from the data-id attribute of the button
+        const taskId = $(this).data('id'); 
 
         $.ajax({
             type: "DELETE",
@@ -56,24 +56,22 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/create_person",  // Updated endpoint to create_person
+            url: "http://localhost:3000/create_person",  
             data: JSON.stringify(personData),
             contentType: "application/json",
             dataType: "json",
             success: function(response) {
                 console.log('Person added:', response);
                 loadPeople();
-                // You might want to create a function like 'loadPersons()' to update the list of persons
             },
             error: function(error) {
                 console.error('There was an error:', error);
-                // Handle errors: Show an error message, etc.
             }
         });
     });
 
     $(document).on('click', '.remove-person-btn', function() {
-        const personId = $(this).data('id'); // Get the person ID from the data-id attribute of the button
+        const personId = $(this).data('id'); 
 
         $.ajax({
             type: "DELETE",
@@ -81,7 +79,6 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response.message);
                 loadPeople();
-                // You might want to create a function like 'loadPersons()' similar to your loadTasks function
             },
             error: function(error) {
                 console.error('There was an error deleting the person:', error);

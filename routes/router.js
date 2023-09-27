@@ -7,7 +7,7 @@ const Person = require('./people');
 
 router.get('/get_tasks', async (req, res) => {
     try {
-        const tasks = await Task.find(); // fetch all tasks from the database
+        const tasks = await Task.find();
         res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -59,7 +59,7 @@ router.delete('/delete_task/:taskId', async (req, res) => {
 
 router.get('/get_people', async (req, res) => {
     try {
-        const people = await Person.find(); // fetch all people from the database
+        const people = await Person.find();
         res.status(200).json(people);
     } catch (err) {
         res.status(400).json({ error: err.message });
