@@ -99,13 +99,28 @@ router.delete('/delete_person/:id', async (req, res) => {
 router.put('/update_task/:taskId', async (req, res) => {
     try {
         const taskId = req.params.taskId;
-        const task = await Task.findByIdAndUpdate(taskId, req.body);
+        const task = await Task.findOneAndUpdate({ _id: taskId }, req.body, { new: true });
 
         if (!task) {
             return res.status(404).json({ error: 'Task not found' });
         }
 
         res.status(200).json(task);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+router.put('/update_person/:personId', async (req, res) => {
+    try {
+        const personId = req.params.personId;
+        const person = await Person.findOneAndUpdate({ _id: personId }, req.body, { new: true });
+
+        if (!person) {
+            return res.status(404).json({ error: 'Person not found' });
+        }
+
+        res.status(200).json(person);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }

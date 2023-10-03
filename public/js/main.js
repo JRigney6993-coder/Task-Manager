@@ -55,20 +55,20 @@ function loadPeople() {
                     <tr>
                         <td class="py-4 pr-4 border-b border-neutral-100">
                             <div class="flex flex-wrap items-center -m-2">
-                                <div class="w-auto p-2">
+                                <div class="w-auto p-2 person-name">
                                     <span class="block font-semibold">${person.Name}</span>
                                 </div>
                             </div>
                         </td>
                         <td class="py-4 pr-4 border-b border-neutral-100">
-                            <span class="block text-sm font-medium">${person.Age}</span>
+                            <span class="block text-sm font-medium person-age">${person.Age}</span>
                         </td>
                         <td class="py-4 pr-4 border-b border-neutral-100">
-                            <button class="inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-blue-500 text-light hover:opacity-75" type="submit">Edit</button>
+                            <button class="edit-person-btn inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-blue-500 text-light hover:opacity-75" type="submit">Edit</button>
                             <button data-id="${person._id}" class="remove-person-btn inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-red-400 text-light hover:opacity-75" type="submit">Remove</button>
                         </td>
                         <td class="py-4 pr-4 border-b border-neutral-100">
-                            <span class="text-sm font-medium">${index + 1}</span> <!-- using index as ID, you can replace with ${person._id} if you want the actual ID -->
+                            <span class="text-sm font-medium">${person._id}</span> 
                         </td>
                     </tr>`;
                 
@@ -81,16 +81,18 @@ function loadPeople() {
     });
 }
 
-function updateTask(taskId, updatedData) {
+function updateHandler(path, Id, updatedData) {
     $.ajax({
         type: "PUT",
-        url: `http://localhost:3000/update_task/${taskId}`,
-        data: updatedData,
-        success: function(response) {
-            console.log('Task updated:', response);
+        url: `http://localhost:3000/${path}/${Id}`,
+        contentType: 'application/json',
+        data: JSON.stringify(updatedData),
+        success: function (response) {
+            loadTasks();
+            loadPeople();
         },
-        error: function(error) {
-            console.error('There was an error updating the task:', error);
+        error: function (error) {
+            console.error('There was an error updating the cluster:', error);
         }
     });
 }
@@ -119,6 +121,16 @@ $(document).ready(function() {
             <input type="text" class="editable-task-date" value="${dueDate}" style="color:black;">
         `);
     });
+
+
+    $(document).on('click', '.task-finished', function() {
+        const row = $(this).closest('tr');
+        const taskId = row.find('.remove-btn').data('id');  
+
+        updateHandler("update_task", taskId, {
+            Finished: (/false/).test($(this).text()),
+            });
+    });
     
     
 
@@ -130,16 +142,49 @@ $(document).ready(function() {
             const updatedDescription = row.find('.editable-task-description').val();
             const updatedDueDate = row.find('.editable-task-date').val();
             
-            console.log('Extracted Values:', {updatedName, updatedDescription, updatedDueDate});
-            
-            updateTask(taskId, {
+            updateHandler("update_task", taskId, {
                 Task_Name: updatedName,
                 Task_Description: updatedDescription,
                 Due_Date: updatedDueDate
             });
-    
-            loadTasks();
+            
         }
+        
+    });
+
+    $(document).on('click', '.edit-person-btn', function () {
+        const row = $(this).closest('tr');
+
+        if (row.find('.editable-person-name').length) {
+            return;
+        }
+
+        const personName = row.find('.person-name span.font-semibold').text();
+        const personAge = row.find('.person-age').text();
+        
+
+        row.find('.person-name').html(`
+            <input type="text" class="editable-person-name" value="${personName}" style="color:black;">
+        `);
+        row.find('.person-age').html(`
+            <input type="text" class="editable-person-age" value="${personAge}" style="color:black;">
+        `);
     });
     
+
+    $(document).on('keydown', '.editable-person-name, .editable-person-age', function (e) {
+        if (e.keyCode === 13) {
+            const row = $(this).closest('tr');
+            const personId = row.find('.remove-person-btn').data('id');
+            const updatedName = row.find('.editable-person-name').val();
+            const updatedAge = row.find('.editable-person-age').val();
+
+            updateHandler("update_person", personId, {
+                Name: updatedName,
+                Age: updatedAge
+            });
+
+        }
+
+    });
 });
