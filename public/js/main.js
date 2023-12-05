@@ -170,6 +170,27 @@ $(document).ready(function() {
             <input type="text" class="editable-person-age" value="${personAge}" style="color:black;">
         `);
     });
+    $(document).on('click', '.assigned-btn', function() {
+        const taskId = $(this).closest('tr').find('.remove-btn').data('id');
+        $('#person-select-modal').modal('show');
+        $('#person-select-modal').on('submit', function(e) {
+            e.preventDefault();
+            const selectedPersonId = $('#person-select-dropdown').val();  // Get the selected person's ID
+    
+            $.ajax({
+                type: "PUT",
+                url: `http://localhost:3000/assign_person/${taskId}`,
+                data: { personId: selectedPersonId },
+                success: function(response) {
+                    console.log('Person assigned:', response);
+                    $('#person-select-modal').modal('hide');  // Close the modal
+                },
+                error: function(error) {
+                    console.error('There was an error assigning the person:', error);
+                }
+            });
+        });
+    });
     
 
     $(document).on('keydown', '.editable-person-name, .editable-person-age', function (e) {
