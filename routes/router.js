@@ -130,10 +130,4 @@ router.put('/assign_person/:taskId', async (req, res) => {
     }
 });
 
-
-
-
-
 module.exports = router;
-
-

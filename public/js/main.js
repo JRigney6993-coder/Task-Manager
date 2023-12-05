@@ -22,7 +22,6 @@ function loadTasks() {
                         </td>
                         <td class="py-4 pr-4 border-b border-neutral-100">
                             <button class="edit-task-btn inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-blue-500 text-light hover:opacity-75" type="button">Edit</button>
-                            <button class="assigned-btn inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-neutral-300 text-light hover:opacity-75" type="button">Assigned</button>
                             <button data-id="${task._id}" class="remove-btn inline-flex flex-wrap items-center mx-2 px-5 py-3.5 text-sm font-medium rounded-lg transition duration-300 bg-red-400 text-light hover:opacity-75" type="button">Remove</button>
                         </td>
                         <td class="py-4 pr-4 border-b border-neutral-100 task-finished" data-id="${task._id}">
@@ -169,27 +168,6 @@ $(document).ready(function() {
         row.find('.person-age').html(`
             <input type="text" class="editable-person-age" value="${personAge}" style="color:black;">
         `);
-    });
-    $(document).on('click', '.assigned-btn', function() {
-        const taskId = $(this).closest('tr').find('.remove-btn').data('id');
-        $('#person-select-modal').modal('show');
-        $('#person-select-modal').on('submit', function(e) {
-            e.preventDefault();
-            const selectedPersonId = $('#person-select-dropdown').val();  // Get the selected person's ID
-    
-            $.ajax({
-                type: "PUT",
-                url: `http://localhost:3000/assign_person/${taskId}`,
-                data: { personId: selectedPersonId },
-                success: function(response) {
-                    console.log('Person assigned:', response);
-                    $('#person-select-modal').modal('hide');  // Close the modal
-                },
-                error: function(error) {
-                    console.error('There was an error assigning the person:', error);
-                }
-            });
-        });
     });
     
 
